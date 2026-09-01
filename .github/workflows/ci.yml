@@ -31,7 +31,7 @@ jobs:
       - run: cargo test --locked
       - run: cargo build --locked --release --target wasm32-wasip2
       - id: zed-extension-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           key: zed-extension-${{ env.ZED_EXTENSION_CLI_SHA }}
           path: zed-extension
