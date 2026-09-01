@@ -1,0 +1,15 @@
+id = "whim-language-server"
+name = "Whim Language Server"
+description = "Language server and language support for Whim."
+version = "0.1.0"
+schema_version = 1
+authors = ["Seifeddine Gmati <azjezz@carthage.software>"]
+repository = "https://github.com/carthage-software/whim-zed"
+
+[grammars.whim]
+repository = "https://github.com/carthage-software/tree-sitter-whim"
+commit = "7582557f1d87d7af4957b98b351ad0a1c42bd7cd"
+
+[language_servers.whim]
+name = "Whim"
+languages = ["Whim"]

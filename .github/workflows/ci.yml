@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  ZED_EXTENSION_CLI_SHA: 9ee3c503a4bbbc6b4a0f8a789acca4871d773223
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@1.90
+        with:
+          components: clippy, rustfmt
+          targets: wasm32-wasip2
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --all --check
+      - run: cargo clippy --locked --all-targets -- -D warnings
+      - run: cargo test --locked
+      - run: cargo build --locked --release --target wasm32-wasip2
+      - id: zed-extension-cache
+        uses: actions/cache@v4
+        with:
+          key: zed-extension-${{ env.ZED_EXTENSION_CLI_SHA }}
+          path: zed-extension
+      - if: steps.zed-extension-cache.outputs.cache-hit != 'true'
+        run: >-
+          curl --fail --location --silent --show-error
+          "https://zed-extension-cli.nyc3.digitaloceanspaces.com/${ZED_EXTENSION_CLI_SHA}/x86_64-unknown-linux-gnu/zed-extension"
+          --output zed-extension
+      - run: chmod +x zed-extension
+      - name: Package extension
+        run: |
+          mkdir -p "${RUNNER_TEMP}/extension" "${RUNNER_TEMP}/scratch"
+          ./zed-extension \
+            --source-dir . \
+            --output-dir "${RUNNER_TEMP}/extension" \
+            --scratch-dir "${RUNNER_TEMP}/scratch"
+          test -s "${RUNNER_TEMP}/extension/archive.tar.gz"
