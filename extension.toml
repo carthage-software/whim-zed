@@ -1,6 +1,6 @@
-id = "whim-language-server"
-name = "Whim Language Server"
-description = "Language server and language support for Whim."
+id = "whim-lang"
+name = "Whim Language Support"
+description = "Language support for Whim."
 version = "0.1.0"
 schema_version = 1
 authors = ["Seifeddine Gmati <azjezz@carthage.software>"]

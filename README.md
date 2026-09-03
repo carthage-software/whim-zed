@@ -1,4 +1,4 @@
-# Whim Language Server for Zed
+# Whim Language Support for Zed
 
 [![CI](https://github.com/carthage-software/whim-zed/actions/workflows/ci.yml/badge.svg)](https://github.com/carthage-software/whim-zed/actions/workflows/ci.yml)
 
