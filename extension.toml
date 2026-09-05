@@ -8,7 +8,7 @@ repository = "https://github.com/carthage-software/whim-zed"
 
 [grammars.whim]
 repository = "https://github.com/carthage-software/tree-sitter-whim"
-commit = "7582557f1d87d7af4957b98b351ad0a1c42bd7cd"
+commit = "99e550efd095bf0b0f782e096b0ed6136bebaf47"
 
 [language_servers.whim]
 name = "Whim"
