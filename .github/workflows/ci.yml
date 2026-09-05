@@ -21,6 +21,11 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+      - uses: extractions/setup-just@v3
+      - name: Check Tree-sitter queries
+        run: |
+          just sync-scm
+          git diff --exit-code -- languages/whim/highlights.scm
       - uses: dtolnay/rust-toolchain@1.90
         with:
           components: clippy, rustfmt
