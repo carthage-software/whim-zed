@@ -1,14 +1,14 @@
 id = "whim-lang"
 name = "Whim Language Support"
 description = "Language support for Whim."
-version = "0.12.0"
+version = "0.14.0"
 schema_version = 1
 authors = ["Seifeddine Gmati <azjezz@carthage.software>"]
 repository = "https://github.com/carthage-software/whim-zed"
 
 [grammars.whim]
 repository = "https://github.com/carthage-software/tree-sitter-whim"
-commit = "0fed3f8fa6c73501fa6770182e2b0e0320c4b26b"
+commit = "819a7bebeaeebc7ac8fd28df1eb2e8493e9fa782"
 
 [language_servers.whim]
 name = "Whim"
